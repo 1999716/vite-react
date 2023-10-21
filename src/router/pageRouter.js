@@ -1,6 +1,6 @@
 
 import Test from '../pages/view/test.jsx'
-import Table from '../pages/view/table.jsx'
+import TableList from '../pages/view/tableList.jsx'
 
 
 const pageRouteArr = [
@@ -12,7 +12,7 @@ const pageRouteArr = [
     {
         path: '/table',
         name: '号码',
-        component: Table
+        component: TableList
     }
 ];
 
