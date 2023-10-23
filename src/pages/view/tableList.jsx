@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios"
 import { Table } from 'antd';
 
 const dataSource = [
@@ -37,9 +38,18 @@ let columns = [
 
 export default class TableList extends React.Component {
 
+
     render() {
+
+        // axios({
+        //     method: 'get',
+        //     url: '/api/xy-magic-api/api-2.0/kp/park/detail?id=1000001',
+        // }).then(res => {
+        //     console.log(res)
+        // })
+
         dataSource.forEach(element => {
-            if (element.age > 36) {
+            if (element.age > 3) {
                 columns = columns.filter(item => item.key != 'age')
             }
         });
