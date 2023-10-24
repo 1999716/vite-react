@@ -1,8 +1,64 @@
 import React from 'react';
-import axios from "axios"
 import { Table } from 'antd';
 
-const dataSource = [
+
+const columns = [
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+    },
+    {
+        title: 'Age',
+        dataIndex: 'age',
+        key: 'age',
+    },
+    {
+        title: 'Address',
+        dataIndex: 'address',
+        key: 'address',
+    },
+    {
+        title: 'Action',
+        dataIndex: '',
+        key: 'x',
+        render: () => <a>Delete</a>,
+    },
+];
+
+const data = [
+    {
+        key: 1,
+        name: 'John Brown',
+        age: 32,
+        address: 'New York No. 1 Lake Park',
+        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+    },
+    {
+        key: 2,
+        name: 'Jim Green',
+        age: 42,
+        address: 'London No. 1 Lake Park',
+        description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
+    },
+    {
+        key: 3,
+        name: 'Not Expandable',
+        age: 29,
+        address: 'Jiangsu No. 1 Lake Park',
+        description: 'This not expandable',
+    },
+    {
+        key: 4,
+        name: 'Joe Black',
+        age: 32,
+        address: 'Sydney No. 1 Lake Park',
+        description: 'My name is Joe Black, I am 32 years old, living in Sydney No. 1 Lake Park.',
+    },
+];
+
+
+const sonDataSource = [
     {
         key: '1',
         name: '胡彦斌',
@@ -17,7 +73,7 @@ const dataSource = [
     },
 ];
 
-let columns = [
+const sonColumns = [
     {
         title: '姓名',
         dataIndex: 'name',
@@ -33,31 +89,36 @@ let columns = [
         dataIndex: 'address',
         key: 'address',
     },
-];
+]
 
 
 export default class TableList extends React.Component {
 
 
     render() {
-
-        // axios({
-        //     method: 'get',
-        //     url: '/api/xy-magic-api/api-2.0/kp/park/detail?id=1000001',
-        // }).then(res => {
-        //     console.log(res)
-        // })
-
-        dataSource.forEach(element => {
-            if (element.age > 3) {
-                columns = columns.filter(item => item.key != 'age')
-            }
-        });
-
         return (
-            <div className="Table">
-                <Table dataSource={dataSource} columns={columns} />
-            </div>
+            <Table
+                className='my-table'
+                style={{ margin: '8px' }}
+                columns={columns}
+                expandable={{
+                    expandedRowRender: (record) => (
+                        <Table
+                            style={{
+                                marginRight: "48px",
+                                marginBottom: "10px"
+                            }}
+                            className='my-table'
+                            columns={sonColumns}
+                            dataSource={sonDataSource}
+                            pagination={{ position: ['none', 'none'] }}
+                        />
+                    ),
+                    rowExpandable: (record) => record.name !== 'Not Expandable',
+                }
+                }
+                dataSource={data}
+            />
         );
     }
 

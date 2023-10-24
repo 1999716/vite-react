@@ -2,6 +2,7 @@ import { HashRouter as Router, Routes, Route, useNavigate } from "react-router-d
 import routeArr from './router/router.js'
 import zhCN from 'antd/es/locale/zh_CN';
 import { ConfigProvider } from 'antd';
+import "../src/assets/main.css"
 
 function App() {
   return (
